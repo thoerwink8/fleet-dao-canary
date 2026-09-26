@@ -1,0 +1,5 @@
+{
+  "说明": "巡检仓的流程配置，只写和全组织默认（fleet-dao 的 packages/core/flow.default.json）不同的；格式见 fleet-dao 的 packages/core/src/config.ts。fleet-dao 的对账每 15 分钟读一次默认分支上的这份，同步进库里的副本，派活只认副本。testCommand 是写码会话交活要原样跑的那条，和本仓 CI 跑的一样。",
+  "formatVersion": 1,
+  "testCommand": "node --test"
+}

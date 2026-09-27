@@ -1,5 +1,5 @@
 {
-  "说明": "巡检仓的流程配置，只写和全组织默认（fleet-dao 的 packages/core/flow.default.json）不同的；格式见 fleet-dao 的 packages/core/src/config.ts。fleet-dao 的对账每 15 分钟读一次默认分支上的这份，同步进库里的副本，派活只认副本。testCommand 是写码会话交活要原样跑的那条，和本仓 CI 跑的一样。profiles.default 整套换掉全组织默认的同名配置（2026-09-27 起）：Lead 先试 Grok 4.7、Opus 5.5 兜底（创始人要把引擎的 Lead 换成 Grok，换 fleet-dao 之前先在巡检仓试）；review、verify 末尾加 opus-5.5 兜底（写的全是 Grok 一族、又碰界面时 GPT 不许验）；其余照抄全组织默认。",
+  "说明": "巡检仓的流程配置，只写和全组织默认（fleet-dao 的 packages/core/flow.default.json）不同的；格式见 fleet-dao 的 packages/core/src/config.ts。fleet-dao 的对账每 15 分钟读一次默认分支上的这份，同步进库里的副本，派活只认副本。testCommand 是写码会话交活要原样跑的那条，和本仓 CI 跑的一样。profiles.default 整套换掉全组织默认的同名配置（2026-09-27 起）：Lead 先试 Grok 4.7、Opus 5.5 兜底（创始人要把引擎的 Lead 换成 Grok，换 fleet-dao 之前先在巡检仓试）；review、verify 末尾加 opus-5.5 兜底（写的全是 Grok 一族、又碰界面时 GPT 不许验）；sidekick 去掉 opus-5.5（Lead 是 Grok 时副手避开 Grok 一族，Kimi、DeepSeek 走的 Mirasim 还没接，派不出副手就由 Lead 自己干，不花 Claude 额度）；其余照抄全组织默认。",
   "formatVersion": 1,
   "testCommand": "node --test",
   "profiles": {
@@ -7,7 +7,7 @@
       "mode": "fusion",
       "steps": {
         "lead": ["grok-4.7", "opus-5.5"],
-        "sidekick": ["grok-4.7", "kimi-k3", "deepseek-flash", "opus-5.5"],
+        "sidekick": ["grok-4.7", "kimi-k3", "deepseek-flash"],
         "review": ["gpt-5.6-luna", "grok-4.7", "kimi-k3", "opus-5.5"],
         "verify": ["gpt-5.6-luna", "grok-4.7", "kimi-k3", "opus-5.5"],
         "discuss": ["gpt-5.6-luna"]
